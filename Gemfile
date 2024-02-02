@@ -78,3 +78,5 @@ end
 group :production do
    gem 'pg'
 end
+
+gem 'mysql2', '>= 0.5.3', '< 0.7.0'
