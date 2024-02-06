@@ -15,7 +15,7 @@
 | encrypted_password | string   | null: false                  |
 | birthday           |	date	  | null: false                  |
 ### Association
-has_many
+has_many :Productsテーブル
 
 ## Productsテーブル
 
@@ -29,32 +29,32 @@ has_many
 | condition_id    | integer   | null: false                    |
 | shipping_fee_id | integer    | null: false                    |
 | prefecture_id   |	integer	  | null: false                    |
-| shipping_days_id|	integer	  | null: false                    |
+| shipping_day_id|	integer	  | null: false                    |
 ### Association
-has_many
+has_one :DeliveryAddressesテーブル
 
 ## PurchaseHistoriesテーブル
 
 | Column          | Type      | Options                        |
 | --------------- | --------- | ------------------------------ |
 | user            | references | null:false, foreign_key: true  |
-| product_id      | references | null:false, foreign_key: true  |
+| product      | references | null:false, foreign_key: true  |
 ### Association
-has_many
+has_one :DeliveryAddressesテーブル
 
 ## DeliveryAddressesテーブル
 
 | Column          | Type      | Options                        |
 | --------------- | --------- | ------------------------------ |
 | postal_code     | string	  | null: false                    |
-| prefecture      | integer   |	null: false                    |
+| prefecture_id   | integer   |	null: false                    |
 | city            |	string	  | null: false                    |
 | address         |	string	  | null: false                    |
 | building        |	string	  |                                |
 | phone_number    |	string	  | null: false                    |
-| purchase_history_id | references | null: false, foreign_key: true|
+| purchase_history | references | null: false, foreign_key: true|
 ### Association
-has_one
+has_one :PurchaseHistoriesテーブル
 
 * This README would normally document whatever steps are necessary to get the
 application up and running.
