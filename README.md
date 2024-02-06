@@ -24,22 +24,18 @@
 | name            | string    | null: false                    |
 | description     | text	    | null: false                    |
 | price	          | integer   | null: false                    |
-| image_ref       | string    | null: false                    |
-| category        | string	  | null: false                    |
-| condition       | string    | null: false                    |
-| shipping_fee    | string    | null: false                    |
-| shipping_region |	string	  | null: false                    |
-| shipping_days   |	string	  | null: false                    |
+| category_id     | integer	  | null: false                    |
+| condition_id    | integer   | null: false                    |
+| shipping_fee_id | integer    | null: false                    |
+| shipping_region_id |	integer	  | null: false                    |
+| shipping_days_id|	integer	  | null: false                    |
 
 ## PurchaseHistoriesテーブル
 
 | Column          | Type      | Options                        |
 | --------------- | --------- | ------------------------------ |
-| id              | bigint    | primary key                    |
 | user            | reference | null:false, foreign_key: true  |
-| product_id      | bigint    | foreign key                    |
-| quantity        | integer   |                                |
-| total_price     | integer   |                                |
+| product_id      | reference | null:false, foreign_key: true  |
 
 ## DeliveryAddressesテーブル
 
@@ -47,8 +43,13 @@
 | --------------- | --------- | ------------------------------ |
 | id              | bigint    | primary key                    |
 | recipient_name  | string    | null: false                    |
-| address         | string    | null: false                    |
-| postal_code     | string    | null: false                    |
+| postal_code     | string	  | null: false                    |
+| prefecture      | string    |	null: false                    |
+| city            |	string	  | null: false                    |
+| address         |	string	  | null: false                    |
+| building        |	string	  |                                |
+| phone_number    |	string	  | null: false                    |
+| purchase_history_id |	bigint | null: false, foreign_key: true|
 
 * This README would normally document whatever steps are necessary to get the
 application up and running.
