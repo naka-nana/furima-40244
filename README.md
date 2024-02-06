@@ -14,42 +14,47 @@
 | email              | string   | null: false, unique: true    |
 | encrypted_password | string   | null: false                  |
 | birthday           |	date	  | null: false                  |
-
+### Association
+has_many
 
 ## Productsテーブル
 
 | Column          | Type      | Options                        |
 | --------------- | --------- | ------------------------------ |
-| user            | reference | null: false, foreign_key: true |
+| user            | references | null: false, foreign_key: true |
 | name            | string    | null: false                    |
 | description     | text	    | null: false                    |
 | price	          | integer   | null: false                    |
 | category_id     | integer	  | null: false                    |
 | condition_id    | integer   | null: false                    |
 | shipping_fee_id | integer    | null: false                    |
-| shipping_region_id |	integer	  | null: false                    |
+| prefecture_id   |	integer	  | null: false                    |
 | shipping_days_id|	integer	  | null: false                    |
+### Association
+has_many
 
 ## PurchaseHistoriesテーブル
 
 | Column          | Type      | Options                        |
 | --------------- | --------- | ------------------------------ |
-| user            | reference | null:false, foreign_key: true  |
-| product_id      | reference | null:false, foreign_key: true  |
+| user            | references | null:false, foreign_key: true  |
+| product_id      | references | null:false, foreign_key: true  |
+### Association
+has_many
 
 ## DeliveryAddressesテーブル
 
 | Column          | Type      | Options                        |
 | --------------- | --------- | ------------------------------ |
-| id              | bigint    | primary key                    |
-| recipient_name  | string    | null: false                    |
 | postal_code     | string	  | null: false                    |
-| prefecture      | string    |	null: false                    |
+| prefecture      | integer   |	null: false                    |
 | city            |	string	  | null: false                    |
 | address         |	string	  | null: false                    |
 | building        |	string	  |                                |
 | phone_number    |	string	  | null: false                    |
-| purchase_history_id |	bigint | null: false, foreign_key: true|
+| purchase_history_id | references | null: false, foreign_key: true|
+### Association
+has_one
 
 * This README would normally document whatever steps are necessary to get the
 application up and running.
