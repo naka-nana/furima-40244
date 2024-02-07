@@ -15,6 +15,7 @@
 | encrypted_password | string   | null: false                  |
 | birthday           |	date	  | null: false                  |
 ### Association
+has_many :products
 has_many :purchase_histories
 
 ## Productsテーブル
@@ -43,6 +44,7 @@ has_one :purchase_history
 ### Association
 belongs_to :user
 belongs_to :product
+has_one :delivery_address
 
 ## DeliveryAddressesテーブル
 
