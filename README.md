@@ -15,8 +15,7 @@
 | encrypted_password | string   | null: false                  |
 | birthday           |	date	  | null: false                  |
 ### Association
-has_many :products
-has_many :urchasehistories
+has_many :purchase_histories
 
 ## Productsテーブル
 
@@ -32,8 +31,8 @@ has_many :urchasehistories
 | prefecture_id   |	integer	  | null: false                    |
 | shipping_day_id|	integer	  | null: false                    |
 ### Association
-has_many :users
-has_one :deliveryaddresses
+belongs_to :user
+has_one :purchase_history
 
 ## PurchaseHistoriesテーブル
 
@@ -42,8 +41,8 @@ has_one :deliveryaddresses
 | user            | references | null:false, foreign_key: true  |
 | product      | references | null:false, foreign_key: true  |
 ### Association
-has_many :users
-has_one :products
+belongs_to :user
+belongs_to :product
 
 ## DeliveryAddressesテーブル
 
@@ -51,13 +50,13 @@ has_one :products
 | --------------- | --------- | ------------------------------ |
 | postal_code     | string	  | null: false                    |
 | prefecture_id   | integer   |	null: false                    |
-| city            |	string	  | null: false                    |
+| city            |	string	  | null: false                    |00000000
 | address         |	string	  | null: false                    |
 | building        |	string	  |                                |
 | phone_number    |	string	  | null: false                    |
 | purchase_history | references | null: false, foreign_key: true|
 ### Association
-belongs_to :purchasehistories
+belongs_to :purchase_history
 
 * This README would normally document whatever steps are necessary to get the
 application up and running.
