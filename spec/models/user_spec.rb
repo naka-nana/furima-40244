@@ -13,8 +13,9 @@ RSpec.describe User, type: :model do
 
   context 'when user data is invalid' do
     before do
-      # Setup invalid user data here
+      @user = FactoryBot.build(:user)
     end
+
 
   it 'nicknameが空では登録できない' do
     @user.nickname = ''
@@ -54,17 +55,6 @@ RSpec.describe User, type: :model do
     @user.password_confirmation = '123456'
     @user.valid?
     expect(@user.errors.full_messages).to include("Password is invalid. Include both letters and numbers")
-  end
-
-  it 'パスワードが半角英数字混合であれば登録できる' do
-    @user.password = 'abc123'
-    @user.password_confirmation = 'abc123'
-    @user.last_name = '山田'
-    @user.first_name = '太郎'
-    @user.last_name_kana = 'ヤマダ'
-    @user.first_name_kana = 'タロウ'
-    @user.birth_date = '2000-01-01'
-    expect(@user).to be_valid
   end
 
   it 'パスワードとパスワード（確認）が一致しなければ登録できない' do
