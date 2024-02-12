@@ -1,10 +1,15 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.all
+    @articles = Article.order("created_at DESC")
   end
 
   def new
     @item = Item.new
+    @categories = Category.all
+    @conditions = Condition.all
+    @prefectures = Prefecture.all
+    @shipping_fees = ShippingFee.all
+    @shipping_days = ShippingDay.all
   end
 
   def create
