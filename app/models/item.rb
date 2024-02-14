@@ -1,6 +1,11 @@
 class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
+  belongs_to :category, class_name: 'Category'
+  belongs_to :condition, class_name: 'Condition'
+  belongs_to :prefecture, class_name: 'Prefecture'
+  belongs_to :shipping_fee, class_name: 'ShippingFee'
+  belongs_to :shipping_day, class_name: 'ShippingDay'
 
   validates :name, presence: true
   validates :description, presence: true

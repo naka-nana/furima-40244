@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_select_collections, only: [:new, :create]
 
   def index
-    @items = Item.order('created_at DESC')
+    # @items = Item.order('created_at DESC')
   end
 
   def new
