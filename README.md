@@ -15,10 +15,10 @@
 | encrypted_password | string   | null: false                  |
 | birthday           |	date	  | null: false                  |
 ### Association
-has_many :products
+has_many :items
 has_many :purchase_histories
 
-## Productsテーブル
+## itemsテーブル
 
 | Column          | Type      | Options                        |
 | --------------- | --------- | ------------------------------ |
