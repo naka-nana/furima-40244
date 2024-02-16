@@ -5,7 +5,7 @@ RSpec.describe Item, type: :model do
     before do
       @user = FactoryBot.create(:user)
       @item = FactoryBot.build(:item, user: @user)
-      @item.image.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'test_image.png')), filename: 'test_image.png', 
+      @item.image.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'test_image.png')), filename: 'test_image.png',
                          content_type: 'image/png')
     end
 
@@ -124,7 +124,7 @@ RSpec.describe Item, type: :model do
     it 'userが紐付いていなければ出品できない' do
       @item.user = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include("User must exist")
+      expect(@item.errors.full_messages).to include('User must exist')
     end
   end
 end
