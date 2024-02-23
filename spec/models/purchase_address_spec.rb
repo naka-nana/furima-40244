@@ -30,6 +30,18 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase_address.errors.full_messages).to include("Postal code can't be blank")
       end
 
+      it 'userが紐付いていなければ購入できないこと' do
+        @purchase_address.user_id = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'itemが紐付いていなければ購入できないこと' do
+        @purchase_address.item_id = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Item can't be blank")
+      end
+
       it '郵便番号が半角ハイフンを含まない形式だと保存できないこと' do
         @purchase_address.postal_code = '1234567'
         @purchase_address.valid?
@@ -64,6 +76,12 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.phone_number = '090123456789'
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
+      end
+
+      it '電話番号が9桁以下だと保存できないこと' do
+        @purchase_address.phone_number = '090123456'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include('Phone number is too short (minimum is 10 characters)')
       end
 
       it '電話番号にハイフンが含まれていると保存できないこと' do
