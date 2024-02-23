@@ -1,4 +1,3 @@
 class Deliveryaddress < ApplicationRecord
-  belongs_to :purchasehistory
-  
+  belongs_to :PurchaseHistory
 end
