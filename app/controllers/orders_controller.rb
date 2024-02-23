@@ -37,6 +37,8 @@ class OrdersController < ApplicationController
   def redirect_for_sold_out_item
     if @item.purchase_history.present?
       redirect_to root_path, alert: '売却済みの商品は編集できません。'
+    end
+  end
 
   def purchase_address_params
     params.require(:purchase_address).permit(:postal_code, :prefecture_id, :city, :address, :building_name, :phone_number).merge(
