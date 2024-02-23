@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
-  before_action :set_item, only: [:index, :create]
-  before_action :redirect_seller, only: [:index,:update]
-  before_action :redirect_for_sold_out_item, only: [:index]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_seller, only: [:edit, :update, :destroy]
+  before_action :redirect_for_sold_out_item, only: [:edit, :update]
 
   def index
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
@@ -28,9 +28,15 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
-  def redirect_seller
-    redirect_to root_path, alert: '自身が出品した商品の購入ページにはアクセスできません。' if current_user.id == @item.user_id
+  def def redirect_seller
+    if current_user.nil? || current_user.id != @item.user_id
+      redirect_to root_path, alert: '自身が出品した商品の購入ページにはアクセスできません。'
+    end
   end
+
+  def redirect_for_sold_out_item
+    if @item.purchase_history.present?
+      redirect_to root_path, alert: '売却済みの商品は編集できません。'
 
   def purchase_address_params
     params.require(:purchase_address).permit(:postal_code, :prefecture_id, :city, :address, :building_name, :phone_number).merge(
