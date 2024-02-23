@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:index, :create]
   before_action :redirect_seller, only: [:edit, :update, :destroy]
-  before_action :redirect_for_sold_out_item, only: [:edit, :update]
+  before_action :redirect_for_sold_out_item, only: [:show, :edit, :update, :destroy]
 
   def index
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
@@ -35,7 +35,7 @@ class OrdersController < ApplicationController
   end
 
   def redirect_for_sold_out_item
-    if @item.purchase_history.present?
+    if @item&.purchasehistory.present?
       redirect_to root_path, alert: '売却済みの商品は編集できません。'
     end
   end
