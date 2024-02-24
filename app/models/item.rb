@@ -1,6 +1,5 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  has_one :purchase_history
   belongs_to :user
   has_one_attached :image
   belongs_to_active_hash :category
@@ -18,9 +17,6 @@ class Item < ApplicationRecord
   validate :image_presence
   validates :price, presence: true,
                     numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
-  def sold_out?
-    purchasehistory.present?
-  end
 
   private
 
