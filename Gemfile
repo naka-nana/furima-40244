@@ -85,3 +85,4 @@ gem 'mysql2', '>= 0.5.3', '< 0.7.0'
 
 gem 'devise'
 gem 'active_hash'
+gem 'webpacker'
