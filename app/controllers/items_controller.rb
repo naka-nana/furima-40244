@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :check_user, only: [:edit, :update]
   before_action :set_select_collections, only: [:new, :create, :show, :edit, :update]
-
+  before_action :redirect_for_sold_out_item, only: [:show, :edit, :update, :destroy]
   def index
     @items = Item.all.order('created_at DESC')
   end
@@ -48,6 +48,12 @@ class ItemsController < ApplicationController
 
   def check_user
     redirect_to root_path unless current_user.id == @item.user_id
+  end
+
+  def redirect_for_sold_out_item
+    if @item&.purchasehistory.present?
+      redirect_to root_path, alert: '売却済みの商品は編集できません。'
+    end
   end
 
   def item_params
