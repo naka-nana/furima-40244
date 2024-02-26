@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :check_user, only: [:edit, :update]
   before_action :set_select_collections, only: [:new, :create, :show, :edit, :update]
-  before_action :redirect_for_sold_out_item, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_for_sold_out_item, only: [:edit, :update, :destroy]
   def index
     @items = Item.all.order('created_at DESC')
   end
