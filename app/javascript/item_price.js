@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const profit = Math.floor(price - tax);
 
     // 計算結果を対応するHTML要素に表示
-    document.getElementById("add-tax-price").textContent = tax; // 手数料を表示
+    document.getElementById("add-tax-price").textContent = add_tax_price; // 手数料を表示
     document.getElementById("profit").textContent = profit; // 利益を表示
   });
 });
