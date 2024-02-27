@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
+  before_action :redirect_user, only: [:index, :create]
   before_action :redirect_seller, only: [:edit, :update, :destroy]
   before_action :redirect_for_sold_out_item, only: [:show, :edit, :update, :destroy]
 
@@ -31,6 +33,12 @@ class OrdersController < ApplicationController
   def def redirect_seller
     if current_user.nil? || current_user.id != @item.user_id
       redirect_to root_path, alert: '自身が出品した商品の購入ページにはアクセスできません。'
+    end
+  end
+
+  def redirect_user
+    if current_user.id == @item.user_id || @item.order.present?
+      redirect_to root_path
     end
   end
 
